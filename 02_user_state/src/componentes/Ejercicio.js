@@ -36,6 +36,7 @@ export const Ejercicio = ({fecha}) => {
         <strong>{year}</strong>
         <p>
             <button onClick={e => cambiarYear(1)}>+</button>
+            
             <button onClick={e => cambiarYear(-1)}>-</button>
 
         </p>
