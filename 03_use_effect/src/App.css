@@ -52,3 +52,6 @@
 .green{
   background-color: lawngreen;
 }
+.tarjeta_pueblo span{
+  display: block;
+}
