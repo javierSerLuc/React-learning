@@ -1,7 +1,18 @@
 
+import { useState } from 'react';
 import './App.css';
+import { Buscador } from './components/Buscador';
+import { Crear } from './components/Crear';
+import { Listado } from './components/Listado';
 
 function App() {
+
+    const [listadoState,setListadoState] = useState([]);
+    const [noEncontradoBusqueda, setnoEncontradoBusqueda] = useState(false)
+    
+
+
+
   return (
     <div className="layout">
 
@@ -21,58 +32,25 @@ function App() {
             </ul>/
         </nav>
 
-        <section className="content">
-            <article className="peli-item">
-                <h3 className="title">J.avi</h3>
-                <p className="description">La mejor peli de Ooo</p>
+        {/* <button onClick={()=>{console.log(listadoState)}}>Stado listado</button> */}
 
-                <button className="edit">Editar</button>
-                <button className="delete">Borrar</button>
-            </article>
+        <section className="content" id='content'>
+        
+        {noEncontradoBusqueda ?(
+            <h3 className='no-encontrado'>No se han encontrado coincidencias</h3>
+        )
+        :(
+            <Listado listadoState={listadoState} setListadoState={setListadoState}/>
 
-            <article className="peli-item">
-                <h3 className="title">J.avi</h3>
-                <p className="description">La mejor peli de Ooo</p>
+        )}
+        {/* <Listado listadoState={listadoState} setListadoState={setListadoState}/> */}
 
-                <button className="edit">Editar</button>
-                <button className="delete">Borrar</button>
-            </article>
-
-            <article className="peli-item">
-                <h3 className="title">J.avi</h3>
-                <p className="description">La mejor peli de Ooo</p>
-
-                <button className="edit">Editar</button>
-                <button className="delete">Borrar</button>
-            </article>
-
-            <article className="peli-item">
-                <h3 className="title">J.avi</h3>
-                <p className="description">La mejor peli de Ooo</p>
-
-                <button className="edit">Editar</button>
-                <button className="delete">Borrar</button>
-            </article>
         </section>
 
         <aside className="lateral">
-            <div className="search">
-                <h3 className="title">Buscador</h3>
-                <form>
-                    <input type="text"/>
-                    <button>Buscar</button>
-                </form>
-            </div>
+            <Buscador listadoState={listadoState} setListadoState={setListadoState} setnoEncontradoBusqueda={setnoEncontradoBusqueda}/>
 
-            <div className="add">
-                <h3 className="title">Añadir Pelicula</h3>
-                <form>
-                    <input type="text" placeholder="Titulo"/>
-                    <textarea placeholder="Descripcion"></textarea>
-                    <input type="submit" value="guardar"/>
-                </form>
-
-            </div>
+            <Crear setListadoState={setListadoState}/>
         </aside>
 
         <footer className="footer">
